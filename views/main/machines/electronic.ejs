@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+<script>
+  
+</script>
+    <div class="container" style="margin: 25px;padding: 126px;">
+        <h1
+            style="text-align: center;height: -27px;padding: -20px;margin: -55px; font-family: 'montserrat', sans-serif; font-size: 2.8rem;">
+            <b>Electronic Lab</b>
+        </h1>
+    </div>
+    
+    <section style="margin: -30px; margin-left: 2rem; margin-right: 2rem;">
+        <div class="container" style="margin-top: -120px;">
+            <div class="row">
+              
+            </div>
+        </div>
+    </section>
+    <div>
+
+        
+
+        <script>
+            const ul = document.querySelector('.row')
+            const display = document.querySelector('.display')
+            const getEquipments = async () => {
+                const res = await fetch('/api/auth/getEquipments')
+
+                const data = await res.json()
+                console.log(data);
+                data.equipment.map((item)=>{
+                    if(item.type == 'electronic'){
+                    let li = `<li> <b>Equipment</b> => ${item.equipmentName} <br> <b>Type</b> => ${item.type} <b>description</b> => ${item.description}</li>`
+                    ul.innerHTML += li
+                    }
+                })
+            }
+            getEquipments()
+        </script>
+
+
+        <%- include('../partials/footer.ejs') %>
+            </body>
+
+ </html>
